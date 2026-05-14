@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprint Points Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="masthead">
+        <div>
+          <p class="eyebrow">Sprint workload report</p>
+          <h1>Sprint Points Tracker</h1>
+        </div>
+        <div class="summary-grid" aria-label="Report summary">
+          <article>
+            <span id="totalIssues">0</span>
+            <p>Issues</p>
+          </article>
+          <article>
+            <span id="developerPoints">0</span>
+            <p>Developer SP</p>
+          </article>
+          <article>
+            <span id="qaePoints">0</span>
+            <p>QAE SP</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <section class="panel report-panel" aria-labelledby="report-heading">
+          <div class="report-topline">
+            <div>
+              <h2 id="report-heading">Webcon Cards By Sprint</h2>
+              <p id="resultCount">0 cards shown</p>
+            </div>
+            <div class="menu-shell">
+              <button
+                type="button"
+                class="menu-button"
+                id="menuToggle"
+                aria-label="Open menu"
+                aria-controls="actionMenu"
+                aria-expanded="false"
+              >
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </button>
+              <div class="action-menu" id="actionMenu" hidden>
+                <input class="visually-hidden" id="csvImport" type="file" accept=".csv,text/csv" />
+                <button type="button" id="importCsv">Import CSV</button>
+                <button type="button" id="loadSample">Load sample</button>
+                <button type="button" id="exportCsv">Export CSV</button>
+                <button type="button" class="danger" id="clearData">Clear data</button>
+                <a href="reports.html">Reports</a>
+              </div>
+            </div>
+          </div>
+          <p class="import-status" id="importStatus" aria-live="polite"></p>
+          <div class="export-panel" id="exportPanel" hidden>
+            <div class="export-panel-heading">
+              <a id="downloadCsvLink" class="download-link" href="#" download="jira-sprint-assignment-report.csv">
+                Download report
+              </a>
+              <a id="openCsvLink" class="download-link" href="#" target="_blank" rel="noopener">
+                Open CSV
+              </a>
+              <button type="button" class="secondary-button" id="saveCsv">Save CSV</button>
+              <button type="button" class="secondary-button" id="copyCsv">Copy CSV</button>
+            </div>
+            <textarea id="csvPreview" readonly aria-label="CSV export preview"></textarea>
+          </div>
+
+          <div class="filters" aria-label="Report filters">
+            <label>
+              Sprint
+              <select id="sprintFilter"></select>
+            </label>
+            <label>
+              Person
+              <select id="personFilter"></select>
+            </label>
+            <label>
+              Search issue
+              <input id="issueSearch" placeholder="PROJ-1001" />
+            </label>
+          </div>
+
+          <div class="totals-strip" id="personTotals" aria-live="polite"></div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th><button type="button" data-sort="sprint">Sprint</button></th>
+                  <th><button type="button" data-sort="issueNumber">Issue</button></th>
+                  <th><button type="button" data-sort="title">Title</button></th>
+                  <th><button type="button" data-sort="issueType">Type</button></th>
+                  <th><button type="button" data-sort="priority">Priority</button></th>
+                  <th><button type="button" data-sort="status">Status</button></th>
+                  <th><button type="button" data-sort="fixVersion">Fix Version</button></th>
+                  <th><button type="button" data-sort="reporter">Reporter</button></th>
+                  <th><button type="button" data-sort="summary">Summary</button></th>
+                  <th><button type="button" data-sort="developer">Developer</button></th>
+                  <th><button type="button" data-sort="devPoints">Dev SP</button></th>
+                  <th><button type="button" data-sort="qae">QAE</button></th>
+                  <th><button type="button" data-sort="qaePoints">QAE SP</button></th>
+                  <th aria-label="Row actions"></th>
+                </tr>
+              </thead>
+              <tbody id="issueRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="emptyStateTemplate">
+      <tr>
+        <td colspan="14" class="empty-state">
+          Import a CSV or load sample data to start the sprint report.
+        </td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

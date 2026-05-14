@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcon Reports by Sprint</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="masthead reports-masthead">
+        <div>
+          <p class="eyebrow">Sprint workload visuals</p>
+          <h1>Webcon Reports by Sprint</h1>
+        </div>
+        <div class="summary-grid" aria-label="Report summary">
+          <article>
+            <span id="reportIssueCount">0</span>
+            <p>Issues</p>
+          </article>
+          <article>
+            <span id="reportTotalPoints">0</span>
+            <p>Total SP</p>
+          </article>
+          <article>
+            <span id="reportBlockedCount">0</span>
+            <p>Blocked</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reports-toolbar">
+        <label class="report-filter">
+          Sprint
+          <select id="reportSprintFilter"></select>
+        </label>
+        <a class="secondary-button nav-button" href="index.html">Cards</a>
+      </section>
+
+      <section class="reports-grid" aria-label="Sprint reports">
+        <article class="panel chart-panel person-chart">
+          <div class="chart-heading">
+            <h2>Story Points by Person</h2>
+            <p>Developer and QAE points combined by assignee.</p>
+          </div>
+          <div id="personBars" class="bar-list"></div>
+        </article>
+
+        <article class="panel chart-panel sprint-chart">
+          <div class="chart-heading">
+            <h2>Sprint Capacity Summary</h2>
+            <p>Developer and QAE story points by sprint.</p>
+          </div>
+          <div id="sprintBars" class="bar-list"></div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="chart-heading">
+            <h2>Status Breakdown</h2>
+            <p>Card count by workflow status.</p>
+          </div>
+          <div class="donut-layout">
+            <div id="statusDonut" class="donut-chart" aria-label="Status breakdown chart"></div>
+            <div id="statusLegend" class="legend-list"></div>
+          </div>
+        </article>
+
+        <article class="panel chart-panel blocked-panel">
+          <div class="chart-heading">
+            <h2>Blocked Items Callout</h2>
+            <p>Blocked cards with ownership and point impact.</p>
+          </div>
+          <div id="blockedItems" class="blocked-list"></div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="chart-heading">
+            <h2>Priority Mix</h2>
+            <p>Card count by priority.</p>
+          </div>
+          <div id="priorityMix" class="priority-grid"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="reports.js"></script>
+  </body>
+</html>
